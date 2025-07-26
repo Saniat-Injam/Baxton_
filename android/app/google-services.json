@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1031905996293",
+    "project_id": "baxton-5291e",
+    "storage_bucket": "baxton-5291e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031905996293:android:90f02639097e136a3eb66c",
+        "android_client_info": {
+          "package_name": "com.example.baxton"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALCjd76HH1X7mIOOux6RDRyDB3kavi9qk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

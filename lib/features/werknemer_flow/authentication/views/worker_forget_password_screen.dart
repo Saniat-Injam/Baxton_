@@ -1,0 +1,366 @@
+// import 'package:baxton/core/common/styles/global_text_style.dart';
+// import 'package:baxton/core/common/widgets/auth_custom_textfield.dart';
+// import 'package:baxton/core/common/widgets/custom_continue_button.dart';
+// import 'package:baxton/core/utils/constants/colors.dart';
+// import 'package:baxton/features/werknemer_flow/authentication/controllers/worker_forget_password_controller.dart';
+// import 'package:baxton/features/werknemer_flow/authentication/views/worker_otp_varification_screen.dart';
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+
+// class ForgetPasswordScreen extends StatelessWidget {
+//   ForgetPasswordScreen({super.key});
+//   final WorkerForgetPasswordController workerForgetPasswordController = Get.put(
+//     WorkerForgetPasswordController(),
+//   );
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: SingleChildScrollView(
+//         child: Padding(
+//           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 65),
+//           child: Center(
+//             child: Column(
+//               children: [
+//                 Text(
+//                   "Wachtwoord vergeten",
+//                   style: getTextStyle(
+//                     fontSize: 24,
+//                     fontWeight: FontWeight.w600,
+//                     color: AppColors.primaryBlack,
+//                   ),
+//                 ),
+//                 const SizedBox(height: 60),
+//                 Text(
+//                   "Voer uw e-mailadres of telefoonnummer in voor de code.",
+//                   textAlign: TextAlign.center,
+//                   style: getTextStyle(
+//                     fontSize: 14,
+//                     fontWeight: FontWeight.w400,
+//                     color: AppColors.secondaryBlack,
+//                     lineHeight: 12,
+//                   ),
+//                 ),
+//                 const SizedBox(height: 20),
+//                 Obx(
+//                   () => GestureDetector(
+//                     onTap: () {
+//                       if (workerForgetPasswordController.toggleValue.value !=
+//                           0) {
+//                         workerForgetPasswordController.toggle();
+//                       }
+//                     },
+//                     child: Container(
+//                       width: 84,
+//                       decoration: BoxDecoration(
+//                         borderRadius: BorderRadius.circular(8),
+//                         color: AppColors.primaryGold,
+//                       ),
+//                       child: Padding(
+//                         padding: const EdgeInsets.symmetric(vertical: 15),
+//                         child: Center(
+//                           child: Text(
+//                             "Email",
+//                             style: getTextStyle(
+//                               color:
+//                                   workerForgetPasswordController
+//                                               .toggleValue
+//                                               .value ==
+//                                           0
+//                                       ? Colors.white
+//                                       : const Color(0xFF3A4C67),
+//                               fontSize: 16,
+//                               fontWeight: FontWeight.w400,
+//                             ),
+//                           ),
+//                         ),
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//                 const SizedBox(height: 30),
+//                 Align(
+//                   alignment: Alignment.bottomLeft,
+//                   child: Obx(
+//                     () => Text(
+//                       workerForgetPasswordController.toggleValue.value == 0
+//                           ? "E-mail"
+//                           : "Phone",
+//                       style: getTextStyle(
+//                         fontSize: 16,
+//                         fontWeight: FontWeight.w400,
+//                         color: AppColors.primaryBlack,
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//                 SizedBox(height: 15),
+//                 Obx(
+//                   () => AuthCustomTextField(
+//                     controller:
+//                         workerForgetPasswordController.toggleValue.value == 0
+//                             ? workerForgetPasswordController.emailController
+//                             : workerForgetPasswordController.phoneController,
+//                     text:
+//                         workerForgetPasswordController.toggleValue.value == 0
+//                             ? "Voer uw e-mail in"
+//                             : "Enter your phone number",
+//                   ),
+//                 ),
+//                 const SizedBox(height: 40),
+//                 CustomContinueButton(
+//                   onTap: () {
+//                     workerForgetPasswordController.sendResetCode();
+//                     workerForgetPasswordController.startCountdown();
+//                     // Navigate to the OTP screen after sending the reset code
+//                     // You can also pass the email or phone number if needed
+//                     // For example:
+//                     Get.to(WorkerOtpVarificationScreen(email: controller.emailController.text));
+//                     // or
+//                     // Get.to(ForgetPasswordOtpScreen(phone: controller.phoneController.text));
+//                     // Here, we are just navigating to the OTP screen without passing any parameter
+//                     Get.to(WorkerOtpVarificationScreen());
+//                   },
+//                   title: "Verzenden",
+//                   textColor: Colors.white,
+//                   backgroundColor: Color(0xff1E90FF),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// import 'package:baxton/core/common/styles/global_text_style.dart';
+// import 'package:baxton/core/common/widgets/auth_custom_textfield.dart';
+// import 'package:baxton/core/common/widgets/custom_continue_button.dart';
+// import 'package:baxton/core/utils/constants/colors.dart';
+// import 'package:baxton/features/werknemer_flow/authentication/controllers/worker_forget_password_controller.dart';
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+
+// class ForgetPasswordScreen extends StatelessWidget {
+//   ForgetPasswordScreen({super.key});
+//   final WorkerForgetPasswordController workerForgetPasswordController = Get.put(
+//     WorkerForgetPasswordController(),
+//   );
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: SingleChildScrollView(
+//         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 65),
+//         child: Center(
+//           child: Column(
+//             children: [
+//               Text(
+//                 "Wachtwoord vergeten",
+//                 style: getTextStyle(
+//                   fontSize: 24,
+//                   fontWeight: FontWeight.w600,
+//                   color: AppColors.primaryBlack,
+//                 ),
+//               ),
+//               const SizedBox(height: 60),
+//               Text(
+//                 "Voer uw e-mailadres of telefoonnummer in voor de code.",
+//                 textAlign: TextAlign.center,
+//                 style: getTextStyle(
+//                   fontSize: 14,
+//                   fontWeight: FontWeight.w400,
+//                   color: AppColors.secondaryBlack,
+//                   lineHeight: 12,
+//                 ),
+//               ),
+//               const SizedBox(height: 20),
+//               Obx(
+//                 () => GestureDetector(
+//                   onTap: () {
+//                     if (workerForgetPasswordController.toggleValue.value != 0) {
+//                       workerForgetPasswordController.toggle();
+//                     }
+//                   },
+//                   child: Container(
+//                     width: 84,
+//                     decoration: BoxDecoration(
+//                       borderRadius: BorderRadius.circular(8),
+//                       color: AppColors.primaryGold,
+//                     ),
+//                     padding: const EdgeInsets.symmetric(vertical: 15),
+//                     child: Center(
+//                       child: Text(
+//                         "Email",
+//                         style: getTextStyle(
+//                           color:
+//                               workerForgetPasswordController
+//                                           .toggleValue
+//                                           .value ==
+//                                       0
+//                                   ? Colors.white
+//                                   : const Color(0xFF3A4C67),
+//                           fontSize: 16,
+//                           fontWeight: FontWeight.w400,
+//                         ),
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//               ),
+//               const SizedBox(height: 30),
+//               Align(
+//                 alignment: Alignment.bottomLeft,
+//                 child: Obx(
+//                   () => Text(
+//                     workerForgetPasswordController.toggleValue.value == 0
+//                         ? "E-mail"
+//                         : "Telefoonnummer",
+//                     style: getTextStyle(
+//                       fontSize: 16,
+//                       fontWeight: FontWeight.w400,
+//                       color: AppColors.primaryBlack,
+//                     ),
+//                   ),
+//                 ),
+//               ),
+//               const SizedBox(height: 15),
+//               Obx(
+//                 () => AuthCustomTextField(
+//                   controller:
+//                       workerForgetPasswordController.toggleValue.value == 0
+//                           ? workerForgetPasswordController.emailController
+//                           : workerForgetPasswordController.phoneController,
+//                   text:
+//                       workerForgetPasswordController.toggleValue.value == 0
+//                           ? "Voer uw e-mail in"
+//                           : "Voer uw telefoonnummer in",
+//                 ),
+//               ),
+//               const SizedBox(height: 40),
+//               CustomContinueButton(
+//                 onTap: () {
+//                   workerForgetPasswordController.sendResetCode();
+//                 },
+//                 title: "Verzenden",
+//                 textColor: Colors.white,
+//                 backgroundColor: const Color(0xff1E90FF),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+import 'package:baxton/core/common/styles/global_text_style.dart';
+import 'package:baxton/core/common/widgets/auth_custom_textfield.dart';
+import 'package:baxton/core/common/widgets/custom_continue_button.dart';
+import 'package:baxton/core/utils/constants/colors.dart';
+import 'package:baxton/features/werknemer_flow/authentication/controllers/worker_forget_password_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class WorkerForgetPasswordScreen extends StatelessWidget {
+  WorkerForgetPasswordScreen({super.key});
+  final controller = Get.put(WorkerForgetPasswordController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 65),
+          child: Center(
+            child: Column(
+              children: [
+                Text(
+                  "Wachtwoord vergeten",
+                  style: getTextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.primaryBlack,
+                  ),
+                ),
+                const SizedBox(height: 60),
+                Text(
+                  "Voer uw e-mailadres of telefoonnummer in voor de code.",
+                  textAlign: TextAlign.center,
+                  style: getTextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.secondaryBlack,
+                    lineHeight: 12,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Obx(
+                  () => GestureDetector(
+                    onTap: () {
+                      if (controller.toggleValue.value != 0) {
+                        controller.toggle();
+                      }
+                    },
+                    child: Container(
+                      width: 84,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: AppColors.primaryGold,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 15),
+                        child: Center(
+                          child: Text(
+                            "Email",
+                            style: getTextStyle(
+                              color:
+                                  controller.toggleValue.value == 0
+                                      ? Colors.white
+                                      : Color(0xFF3A4C67),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 30),
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                    "E-mail",
+                    style: getTextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.primaryBlack,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 15),
+                Obx(
+                  () => AuthCustomTextField(
+                    controller: controller.emailController,
+                    text:
+                        controller.toggleValue.value == 0
+                            ? "Voer uw e-mail in"
+                            : "Enter your phone number",
+                  ),
+                ),
+                const SizedBox(height: 40),
+                CustomContinueButton(
+                  onTap: controller.forgetPassword,
+                  title: 'Verzenden',
+                  textColor: Colors.white,
+                  backgroundColor: const Color(0xff1E90FF),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
